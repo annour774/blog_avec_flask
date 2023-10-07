@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}
+Articles
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='article.css')}}">
+{% endblock %}
+
+{% block body %}
+	{% for message in get_flashed_messages() %}
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+			{{ message }}
+		  	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		  		<span aria-hidden="true">&times;</span>
+		  	</button>
+		</div>
+	{% endfor %}
+    <div class="container">
+        <div class="article-container">
+            <h1 class="text-center mt-4 mb-5">Liste des articles</h1>
+            {% if not articles %}
+                <p class="text-center">Aucun article n'a été trouvé !</p>
+            {% endif %}
+            {% for article in articles %}
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <h2 class="card-title mb-3">{{ article.titre }}</h2>
+                        <p class="card-text mb-2">Auteur : {{ article.utilisateur.user_name }}</p>
+                        <p class="card-text mb-4">{{ article.contenu|safe }}</p>
+                        <a href="{{ url_for('afficher_commentaires', article_id=article.id) }}" class="btn btn-primary mr-2">Voir les commentaires</a>
+                        {%if mes_postes or user_role_id >= 2 %}
+                            <a href="{{ url_for('supprimer_article', article_id=article.id) }}" class="btn btn-danger">Supprimer l'article</a>
+                            {%if user_role_id >= 2%}
+                                <a href="{{ url_for('ecrire_commentaire', article_id=article.id) }}" class="btn btn-secondary">Laisser un commentaire</a>
+                            {%endif%}
+                        {%else %}
+                            <a href="{{ url_for('ecrire_commentaire', article_id=article.id) }}" class="btn btn-secondary">Laisser un commentaire</a>
+                        {%endif%}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

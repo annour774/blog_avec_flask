@@ -1,0 +1,41 @@
+span {
+    text-decoration: underline;
+}
+
+h1 {
+    margin-top: 30px;
+}
+
+h3 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.article-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.card {
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 16px;
+    color: #555555;
+}
+
+img {
+    max-width: 40%;
+    height: auto;
+}

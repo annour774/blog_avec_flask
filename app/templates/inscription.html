@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Inscription</title>
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='form.css')}}">
+</head>
+<body>
+	<h1 style="text-align:center;">Inscription</h1>
+	<form action="{{url_for('inscription')}}" method="POST">
+		{{ form.csrf_token }}
+
+		{{ form.firstname.label }}
+		{{ form.firstname }}<br>
+
+		{{ form.lastname.label }}
+		{{ form.lastname }}<br>
+
+		{{ form.username.label }}
+		{{ form.username }}<br>
+
+		{{ form.email.label }}
+		{{ form.email }}<br>
+
+		{{ form.password.label }}
+		{{ form.password }}<br>
+
+		{{ form.confirmation_password.label }}
+		{{ form.confirmation_password }}<br>
+
+		<button type="submit">S'inscrire</button>
+		<a href="{{url_for('connexion')}}" id="connexion" class="btn btn-secondary">Se Connecter</a>
+	</form>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

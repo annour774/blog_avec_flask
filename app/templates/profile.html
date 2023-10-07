@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+  profile
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='profile.css')}}">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="content">
+    <h1 class="text-center">Informations Utilisateur</h1>
+    <p><span>Nom</span>: {{full_name}}</p>
+    <p><span>Nom d'utilisateur</span>: {{username}}</p>
+    <p><span>Rôle</span>: {{role}}</p>
+    {%if role_id == 3%}
+      <a href="{{url_for('afficher_comptes')}}" class="btn btn-primary">Afficher tous les comptes</a>
+    {%endif%} <br><br><br><br>
+    <a href="{{url_for('supprimer_compte', user_id=user_id)}}" class="btn btn-danger">Supprimer mon compte</a>
+  </div>
+</div>
+{% endblock %}

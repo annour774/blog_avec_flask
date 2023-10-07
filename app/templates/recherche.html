@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Recherhce
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='recherche.css')}}">
+{% endblock %}
+
+{% block body%}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <form action="{{url_for('recherche')}}" method="POST" class="search-form">
+                {{ form.csrf_token }}
+
+                <div class="form-group">
+                    {{ form.search }}
+                </div>
+
+                <button type="submit" class="btn btn-primary">Rechercher</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock%}
